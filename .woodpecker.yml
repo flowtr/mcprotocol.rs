@@ -1,0 +1,10 @@
+pipeline:
+  lint:
+    image: ghcr.io/theoparis/gentoo-vulkan-rust
+    commands:
+      - cargo clippy -- -Dwarnings
+      - cargo fmt -- --check
+  build:
+    image: ghcr.io/theoparis/gentoo-vulkan-rust
+    commands:
+      - cargo build --release
