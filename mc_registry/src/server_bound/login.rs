@@ -1,7 +1,7 @@
 use crate::shared_types::login::LoginUsername;
+use crate::shared_types::MCIdentifiedKey;
 use mc_serializer::primitive::VarInt;
 use mc_serializer::serde::Contextual;
-use crate::shared_types::MCIdentifiedKey;
 
 #[derive(mc_serializer_derive::Serial, Debug)]
 pub struct LoginStart {

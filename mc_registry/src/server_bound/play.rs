@@ -1,5 +1,5 @@
-use mc_serializer::primitive::{Identifier, VarInt};
 use crate::shared_types::play::ResourceLocation;
+use mc_serializer::primitive::{Identifier, VarInt};
 use mc_serializer::serde::Contextual;
 
 #[derive(mc_serializer_derive::Serial, Debug)]

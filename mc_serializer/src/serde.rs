@@ -407,5 +407,5 @@ macro_rules! contextual {
                 format!("{}", stringify!($obj))
             }
         }
-    }
+    };
 }

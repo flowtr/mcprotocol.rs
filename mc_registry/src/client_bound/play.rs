@@ -1,10 +1,10 @@
-use std::collections::HashMap;
+use crate::shared_types::play::{BlockPos, Difficulty, GameType, Recipe, ResourceLocation};
+use crate::shared_types::{GameProfile, MCIdentifiedKey};
 use mc_chat::Chat;
 use mc_commands::Command;
 use mc_serializer::primitive::{VarInt, VarLong};
-use crate::shared_types::{GameProfile, MCIdentifiedKey};
-use crate::shared_types::play::{BlockPos, Difficulty, GameType, Recipe, ResourceLocation};
 use mc_serializer::serde::Contextual;
+use std::collections::HashMap;
 
 #[derive(mc_serializer_derive::Serial, Debug, Default)]
 pub struct RelativeArgument {

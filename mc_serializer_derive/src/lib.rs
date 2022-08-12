@@ -5,10 +5,10 @@ extern crate syn;
 use syn::{Data, DeriveInput};
 
 mod bitmap;
+mod directives;
 mod enums;
 mod fields;
 mod structs;
-mod directives;
 
 const PREFIX: &str = "__serde_";
 

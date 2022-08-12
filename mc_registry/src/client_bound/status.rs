@@ -1,7 +1,7 @@
-use mc_chat::Chat;
-use mc_serializer::serde::{ProtocolVersion, ProtocolVersionSpec};
 use crate::server_bound::status::Ping;
+use mc_chat::Chat;
 use mc_serializer::contextual;
+use mc_serializer::serde::{ProtocolVersion, ProtocolVersionSpec};
 
 #[derive(serde_derive::Serialize, serde_derive::Deserialize, Debug)]
 pub struct StatusResponseVersion {

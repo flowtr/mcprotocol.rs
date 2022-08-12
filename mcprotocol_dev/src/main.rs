@@ -6,9 +6,8 @@ async fn main() -> anyhow::Result<()> {
     Ok(())
 }
 
+#[allow(dead_code)]
 struct Context;
 
 #[mc_registry_derive::packet_handler]
-pub fn test(packet: Handshake, context: LockedContext<Context>) {
-
-}
+pub fn test(_packet: Handshake, _context: LockedContext<Context>) {}

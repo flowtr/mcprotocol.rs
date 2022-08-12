@@ -1,8 +1,8 @@
+use crate::directives::after::AfterDirective;
 use core::default::Default;
 use proc_macro2::{Ident, Span, TokenStream};
 use quote::ToTokens;
 use syn::{Attribute, Field, Fields, Type};
-use crate::directives::after::AfterDirective;
 
 pub enum SerialType {
     Default,
@@ -51,9 +51,12 @@ impl SerialConfig {
                         .expect("Please provide an expression for the default value."),
                 )
             }
-            "after" => {
-                crate::directives::after::parse_after_directive(&mut self.after_directive, attribute.parse_args().expect("Please provide arguments for the after directive."))
-            }
+            "after" => crate::directives::after::parse_after_directive(
+                &mut self.after_directive,
+                attribute
+                    .parse_args()
+                    .expect("Please provide arguments for the after directive."),
+            ),
             _ => (),
         }
     }
@@ -95,7 +98,12 @@ impl SerialContext {
         }
     }
 
-    pub fn unnamed(field: &Field, field_ident: Ident, index: usize, struct_context: &TokenStream) -> Self {
+    pub fn unnamed(
+        field: &Field,
+        field_ident: Ident,
+        index: usize,
+        struct_context: &TokenStream,
+    ) -> Self {
         Self {
             unnamed: (true, index),
             struct_context: struct_context.to_token_stream(),
@@ -154,7 +162,7 @@ impl SerialContext {
             Some(operator) => quote::quote! {
                 #short
                 #operator
-            }
+            },
         }
     }
 
@@ -203,7 +211,8 @@ impl SerialContext {
 
         let ty = &self.ty;
 
-        let tokens = self.marker
+        let tokens = self
+            .marker
             .conditional
             .as_ref()
             .map(|conditional| {
@@ -228,7 +237,7 @@ impl SerialContext {
             Some(operator) => quote::quote! {
                 #tokens
                 #operator
-            }
+            },
         }
     }
 
@@ -285,7 +294,12 @@ impl FieldsWrapper {
                 for (index, field) in unnamed.unnamed.iter().enumerate() {
                     let field_ident =
                         Ident::new(format!("tuple_v{}", index).as_str(), Span::call_site());
-                    serial_fields.push(SerialContext::unnamed(field, field_ident, index, &struct_context))
+                    serial_fields.push(SerialContext::unnamed(
+                        field,
+                        field_ident,
+                        index,
+                        &struct_context,
+                    ))
                 }
             }
             Fields::Unit => {

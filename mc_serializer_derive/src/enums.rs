@@ -84,7 +84,9 @@ impl VariantWrapper {
         let key_ser = if passthrough {
             None
         } else {
-            Some(quote::quote!(mc_serializer::serde::Serialize::serialize(&#key, writer, protocol_version)#key_err;))
+            Some(
+                quote::quote!(mc_serializer::serde::Serialize::serialize(&#key, writer, protocol_version)#key_err;),
+            )
         };
         quote::quote! {
             #enum_variant_def {
@@ -105,7 +107,9 @@ impl VariantWrapper {
         let key_ser = if passthrough {
             None
         } else {
-            Some(quote::quote!(mc_serializer::serde::Serialize::size(&#key, protocol_version)#key_err;))
+            Some(
+                quote::quote!(mc_serializer::serde::Serialize::size(&#key, protocol_version)#key_err;),
+            )
         };
         quote::quote! {
             #enum_variant_def {
